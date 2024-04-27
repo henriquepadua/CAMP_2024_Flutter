@@ -31,37 +31,55 @@ class HomePageState extends State<HomePage> {
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 200,
-            child: TextField(
-              //controller: tarefaController,
-              textAlign: TextAlign.center,
-              decoration: const InputDecoration(
-                // suffixIcon: TextButton(
-                //   onPressed: () {},
-                //   child: const Text(
-                //     "ADD",
-                //     style: TextStyle(
-                //         color: Colors.white,
-                //         backgroundColor: Color(0xFFC1007E)),
-                //   ),
-                // ),
-                labelText: "Nova tarefa",
-                // labelStyle: TextStyle(
-                //   color: Colors.pink,
-                //   fontSize: 15.0,
-                // ),
-                // hintText: "Digite nova tarefa",
-                // hintStyle: TextStyle(
-                //   color: Colors.black,
-                //   fontSize: 15.0,
-                // ),
-                border: OutlineInputBorder(),
+          Row(
+            children: [
+              SizedBox(
+                width: 300,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 18),
+                  child: TextField(
+                    controller: tarefaController,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      // suffixIcon: TextButton(
+                      //   onPressed: () {},
+                      //   child: const Text(
+                      //     "ADD",
+                      //     style: TextStyle(
+                      //         color: Colors.white,
+                      //         backgroundColor: Color(0xFFC1007E)),
+                      //   ),
+                      // ),
+                      labelText: "Nova tarefa",
+                      labelStyle: TextStyle(
+                        color: Colors.pink,
+                        fontSize: 15.0,
+                      ),
+                      hintText: "Digite nova tarefa",
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                ),
               ),
-              style: const TextStyle(color: Colors.black),
-            ),
+              TextButton(
+                child: const Text("ADD",
+                style: TextStyle(color: Colors.white),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.pink),
+                ),
+                onPressed: () {
+                  
+                },
+              )
+            ],
           ),
-          Text("Passei aqui"),
+          //Text("Passei aqui"),
         ],
       ),
     );
