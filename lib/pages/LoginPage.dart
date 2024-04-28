@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 250),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 250),
                   child: Column(children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                           horizontal: 80.0, vertical: 10),
                       child: TextFormField(
                         textAlign: TextAlign.center,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "Digite seu email",
                           labelStyle: TextStyle(
                             color: Colors.white,
@@ -57,13 +57,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.symmetric(vertical: 2)),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 2)),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 80.0),
                       child: TextFormField(
                         controller: senhaController,
                         textAlign: TextAlign.center,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "Digite sua senha",
                           labelStyle: TextStyle(
                             color: Colors.white,
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         elevation: 20,
@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => const HomePage()),
                         );
                       },
                       child: const Text(

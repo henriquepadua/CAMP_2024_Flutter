@@ -61,6 +61,9 @@ flutter:
   assets:
     - assets/logo_ioasys.png
     - assets/logo_home.png
+    - assets/Group1.png
+    - assets/Vector.png
+    - assets/Group1.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

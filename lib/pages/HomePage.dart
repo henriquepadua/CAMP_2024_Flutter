@@ -9,7 +9,15 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  TextEditingController tarefaController = TextEditingController();
+  TextEditingController nomeTarefaController = TextEditingController();
+  List<Map<String, dynamic>> tarefas = [];
+
+  void deleteCompletedTasks() {
+    setState(() {
+      tarefas.removeWhere((tarefa) => tarefa['concluida'] == true);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,59 +36,99 @@ class HomePageState extends State<HomePage> {
               child: Image.asset("assets/logo_home.png"),
             )
           ]),
-      body: Column(
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                width: 300,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 18),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
                   child: TextField(
-                    controller: tarefaController,
-                    textAlign: TextAlign.center,
+                    controller: nomeTarefaController,
                     decoration: const InputDecoration(
-                      // suffixIcon: TextButton(
-                      //   onPressed: () {},
-                      //   child: const Text(
-                      //     "ADD",
-                      //     style: TextStyle(
-                      //         color: Colors.white,
-                      //         backgroundColor: Color(0xFFC1007E)),
-                      //   ),
-                      // ),
-                      labelText: "Nova tarefa",
+                      labelText: 'Nova Tarefa',
                       labelStyle: TextStyle(
-                        color: Colors.pink,
-                        fontSize: 15.0,
-                      ),
-                      hintText: "Digite nova tarefa",
-                      hintStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
+                          color: Color(0xFFC1007E),
+                          fontWeight: FontWeight.bold),
                       border: OutlineInputBorder(),
                     ),
-                    style: const TextStyle(color: Colors.black),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFC1007E),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          0), // Define o raio da borda como 0 para um quadrado
+                    ),
+                  ),
+                  onPressed: () {
+                    if (nomeTarefaController.text.trim().isNotEmpty) {
+                      setState(() {
+                        tarefas.add({
+                          'nome': nomeTarefaController.text,
+                          'concluida': false,
+                        });
+                        nomeTarefaController.text = '';
+                      });
+                    }
+                  },
+                  child:
+                      const Text('ADD', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: tarefas.map((tarefa) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset("assets/Group1.png"),
+                    Text(
+                      tarefa['nome'],
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Checkbox(
+                      value: tarefa['concluida'],
+                      onChanged: (value) {
+                        setState(() {
+                          tarefa['concluida'] = value;
+                        });
+                      },
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+            if (tarefas.isNotEmpty)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              0), // Define o raio da borda como 0 para um quadrado
+                        ),
+                      ),
+                      onPressed: () {
+                        deleteCompletedTasks();
+                      },
+                      child: const Icon(Icons.delete)),
+                  Image.asset("assets/Vector.png"),
+                  const Text("Criar Apps incriveis",style: TextStyle(fontWeight: FontWeight.bold),)
+                ],
               ),
-              TextButton(
-                child: const Text("ADD",
-                style: TextStyle(color: Colors.white),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.pink),
-                ),
-                onPressed: () {
-                  
-                },
-              )
-            ],
-          ),
-          //Text("Passei aqui"),
-        ],
+          ],
+        ),
       ),
     );
   }
