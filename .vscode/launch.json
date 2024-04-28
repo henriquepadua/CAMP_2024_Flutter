@@ -5,21 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter_class_examples",
-            "cwd": "flutter_class_examples",
+            "name": "Flutter_CAMP_2024",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "flutter_class_examples (profile mode)",
-            "cwd": "flutter_class_examples",
+            "name": "Flutter_CAMP_2024 (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "flutter_class_examples (release mode)",
-            "cwd": "flutter_class_examples",
+            "name": "Flutter_CAMP_2024 (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
